@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <style>
+        body {
+            background-color: pink; /* Set background color to pink */
+            font-family: Arial, sans-serif;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        form {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            width: 300px;
+            margin: 50px auto;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        label, input {
+            display: block;
+            margin: 10px 0;
+            width: 100%;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+    <script>
+        function validateForm() {
+            // Get form elements
+            var name = document.getElementById("name").value;
+            var password = document.getElementById("password").value;
+            var email = document.getElementById("email").value;
+            var mobile = document.getElementById("mobile").value;
+            var lastName = document.getElementById("lastName").value;
+            var address = document.getElementById("address").value;
+
+            // Regular expressions for validation
+            var nameRegex = /^[a-zA-Z\s]{6,}$/;  // Name must have at least 6 letters and only alphabets.
+            var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;  // Valid email format.
+            var mobileRegex = /^\d{10}$/;  // 10 digits for mobile number.
+
+            // Validate Name
+            if (!nameRegex.test(name)) {
+                alert("Name must contain at least 6 characters and only letters.");
+                return false;
+            }
+
+            // Validate Password
+            if (password.length < 6) {
+                alert("Password must be at least 6 characters long.");
+                return false;
+            }
+
+            // Validate Email
+            if (!emailRegex.test(email)) {
+                alert("Please enter a valid email address.");
+                return false;
+            }
+
+            // Validate Mobile Number
+            if (!mobileRegex.test(mobile)) {
+                alert("Mobile number must contain exactly 10 digits.");
+                return false;
+            }
+
+            // Validate Last Name
+            if (lastName.trim() === "") {
+                alert("Last name cannot be empty.");
+                return false;
+            }
+
+            // Validate Address
+            if (address.trim() === "") {
+                alert("Address cannot be empty.");
+                return false;
+            }
+
+            // If all validations pass
+            alert("Registration Successful!");
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <h2>Registration Form</h2>
+    <form onsubmit="return validateForm()">
+        <label for="name">First Name:</label>
+        <input type="text" id="name" name="name"><br><br>
+
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" name="lastName"><br><br>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password"><br><br>
+
+        <label for="email">Email:</label>
+        <input type="text" id="email" name="email"><br><br>
+
+        <label for="mobile">Mobile Number:</label>
+        <input type="text" id="mobile" name="mobile"><br><br>
+
+        <label for="address">Address:</label>
+        <input type="text" id="address" name="address"><br><br>
+
+        <input type="submit" value="Register">
+    </form>
+    <h1> Designed By Kumar Kartik.</h1>
+</body>
+</html>

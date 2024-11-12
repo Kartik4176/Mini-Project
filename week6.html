@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Operations</title>
+    <style>
+        body {
+            background-color: violet; /* Set background color to violet */
+            color: white; /* Set text color to white for better readability */
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1, h3 {
+            margin-bottom: 15px;
+        }
+
+        input {
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #ffffff; /* Button background */
+            color: violet; /* Text color */
+            border: none;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: lightgray;
+        }
+
+        #tableResult {
+            text-align: left;
+            margin-left: 35%;
+        }
+    </style>
+    <script>
+        // Function to check even or odd
+        function checkEvenOdd() {
+            const num = parseInt(document.getElementById('numInput').value);
+            const result = (num % 2 === 0) ? 'Even' : 'Odd';
+            document.getElementById('evenOddResult').innerText = `The number is ${result}.`;
+        }
+
+        // Function to find factorial
+        function factorial(n) {
+            return (n === 0 || n === 1) ? 1 : n * factorial(n - 1);
+        }
+
+        function calculateFactorial() {
+            const num = parseInt(document.getElementById('numInput').value);
+            const result = factorial(num);
+            document.getElementById('factorialResult').innerText = `Factorial of ${num} is ${result}.`;
+        }
+
+        // Function to print multiplication table
+        function multiplicationTable() {
+            const num = parseInt(document.getElementById('numInput').value);
+            let table = '';
+            for (let i = 1; i <= 10; i++) {
+                table += `${num} x ${i} = ${num * i} <br>`;
+            }
+            document.getElementById('tableResult').innerHTML = table;
+        }
+
+        // Function to convert number to words
+        function convertToWords() {
+            const num = parseInt(document.getElementById('numInput').value);
+            const words = numToWords(num);
+            document.getElementById('wordsResult').innerText = `The number in words is: ${words}`;
+        }
+
+        function numToWords(num) {
+            const ones = ["", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine"];
+            const teens = ["Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen"];
+            const tens = ["", "", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety"];
+            const hundreds = "Hundred";
+
+            if (num === 0) return "Zero";
+            if (num > 999) return "Out of range";
+
+            let words = '';
+
+            // Handle hundreds place
+            if (Math.floor(num / 100) > 0) {
+                words += ones[Math.floor(num / 100)] + " " + hundreds + " ";
+                num %= 100;
+            }
+
+            // Handle tens and ones
+            if (num >= 10 && num < 20) {
+                words += teens[num - 10];
+            } else {
+                if (Math.floor(num / 10) > 0) {
+                    words += tens[Math.floor(num / 10)] + " ";
+                }
+                if (num % 10 > 0) {
+                    words += ones[num % 10];
+                }
+            }
+
+            return words.trim();
+        }
+    </script>
+</head>
+<body>
+    <h1>Number Operations</h1>
+    
+    <!-- Input Field -->
+    <input type="number" id="numInput" placeholder="Enter a number">
+    
+    <br><br>
+
+    <!-- Buttons for Operations -->
+    <button onclick="checkEvenOdd()">Check Even or Odd</button>
+    <button onclick="calculateFactorial()">Find Factorial</button>
+    <button onclick="multiplicationTable()">Print Multiplication Table</button>
+    <button onclick="convertToWords()">Convert to Words</button>
+
+    <!-- Results Display -->
+    <h3 id="evenOddResult"></h3>
+    <h3 id="factorialResult"></h3>
+    <h3 id="tableResult"></h3>
+    <h3 id="wordsResult"></h3>
+    <h1> Designed By Kumar Kartik </h1>
+</body>
+</html>
